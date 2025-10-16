@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Apurva Ravikar Chavan — Pravāh Founding MLE Pitch</title>
+  <meta name="description" content="Interactive one‑pager that answers Pravāh application questions, integrates my profile, and proposes a practical pilot." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --panel: #0f1520;
+      --ink: #e9eef7;
+      --muted: #a8b3c7;
+      --brand: linear-gradient(135deg,#7ee8fa 0%, #80ff72 100%);
+      --brand2: #80ff72;
+      --card: #121a26;
+      --accent: #1f2c3f;
+      --ok: #5ee6a6;
+      --warn: #ffd166;
+      --danger: #ff6b6b;
+      --link: #8fd3ff;
+      --ring: rgba(128,255,114,.45);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin:0; padding:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, Noto Sans, "Apple Color Emoji", "Segoe UI Emoji"; color: var(--ink); background: radial-gradient(1200px 600px at 75% -10%, rgba(128,255,114,.08), transparent 60%), var(--bg);}    
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 28px 20px 80px; }
+    header {
+      border: 1px solid rgba(255,255,255,.06);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      backdrop-filter: blur(6px);
+      padding: 22px; border-radius: 18px; position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    header:before { content: ""; position: absolute; inset: -2px; background: conic-gradient(from 180deg at 50% 50%, rgba(128,255,114,.22), rgba(127,246,250,.18), transparent 40%); filter: blur(18px); opacity:.55; }
+    header .row { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; }
+    .title { font-weight: 800; font-size: clamp(26px, 3.2vw, 40px); letter-spacing: .2px; }
+    .subtitle { color: var(--muted); font-weight:500; margin-top: 6px; }
+    .badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+    .badge { font-size: 12px; padding: 6px 10px; border-radius: 999px; background: #0c1a13; color:#c9ffdb; border:1px solid rgba(128,255,114,.22); }
+    .cta { display:flex; gap:10px; flex-wrap: wrap; }
+    .btn { position: relative; display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius: 12px; border:1px solid rgba(255,255,255,.08); background: var(--card); color:var(--ink); text-decoration: none; font-weight: 600; }
+    .btn.primary { background: var(--brand); color:#052b18; border:none; }
+    .btn:hover { box-shadow: 0 0 0 4px rgba(128,255,114,.15); transform: translateY(-1px); }
+
+    .grid { display:grid; gap: 18px; grid-template-columns: repeat(12, 1fr); margin-top: 22px; }
+    .card { background: var(--card); border:1px solid rgba(255,255,255,.06); border-radius:16px; padding:18px; box-shadow: 0 6px 18px rgba(0,0,0,.35); }
+    .span-8 { grid-column: span 8; }
+    .span-4 { grid-column: span 4; }
+    @media (max-width: 980px){ .span-8, .span-4 { grid-column: span 12; } }
+
+    h2 { margin: 0 0 10px; font-size: clamp(18px, 2.2vw, 22px); }
+    h3 { margin: 18px 0 6px; font-size: 16px; color: #cfe7ff; }
+    p { color: #dce6f5; line-height: 1.55; }
+    .list { margin: 10px 0 0 0; padding-left: 18px; color:#dce6f5; }
+    .list li { margin: 6px 0; }
+    .pill { display:inline-block; padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.09); background:#0f1622; color:#cfe7ff; font-size:12px; margin:4px 6px 0 0; }
+
+    .qna { display:grid; gap:12px; }
+    .q { font-weight:700; color:#c9ffdb; }
+    .code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; background:#0a121e; border:1px solid rgba(255,255,255,.06); border-radius:12px; padding:12px; color:#d7e6ff; }
+
+    .resume-columns { display:grid; grid-template-columns: 1.2fr .8fr; gap: 18px; }
+    @media (max-width: 980px){ .resume-columns { grid-template-columns: 1fr; } }
+
+    .section-title { display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px; }
+    .section-title .dot { width:10px; height:10px; border-radius:999px; background: var(--brand2); box-shadow:0 0 0 6px rgba(128,255,114,.15); }
+
+    .timeline { border-left:2px solid rgba(255,255,255,.08); margin-left:8px; padding-left:14px; }
+    .tl-item { margin: 12px 0; }
+    .tl-title { font-weight:700; }
+    .muted { color: var(--muted); }
+
+    .kpi { display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; margin-top: 10px; }
+    .kpi .metric { background: #0e1a26; border:1px solid rgba(255,255,255,.06); padding:14px; border-radius:14px; text-align:center; }
+    .metric .big { font-size:22px; font-weight:800; }
+
+    .footer { margin-top:28px; color:#9bb2cc; font-size:13px; text-align:center; opacity:.85; }
+    .tag { font-size: 12px; color:#9ad0ff; background:#0f1c2a; border:1px dashed rgba(154,208,255,.25); padding:4px 8px; border-radius:999px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header>
+      <div class="row">
+        <div>
+          <div class="title">Apurva Ravikar Chavan</div>
+          <div class="subtitle">Data Scientist / Machine Learning Engineer • New Haven, CT</div>
+          <div class="badges">
+            <span class="badge">Python • PyTorch • scikit‑learn</span>
+            <span class="badge">Time‑Series • Transformers • GNN</span>
+            <span class="badge">MLOps • Docker • Spark</span>
+          </div>
+        </div>
+        <div class="cta">
+          <a class="btn" href="mailto:apurvachavan125@gmail.com">📫 Email</a>
+          <a class="btn" href="tel:+12034104412">📞 Call</a>
+          <a class="btn" href="https://www.linkedin.com/in/apurvachavan125/" target="_blank" rel="noreferrer">in LinkedIn</a>
+          <a class="btn" href="https://github.com/Apurva1205" target="_blank" rel="noreferrer">☆ GitHub</a>
+          <a class="btn primary" onclick="window.print()">⬇︎ Save as PDF</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid" style="margin-top: 20px;">
+      <!-- LEFT: Company Pitch & QnA -->
+      <section class="span-8 card">
+        <div class="section-title"><span class="dot"></span><h2>Pravāh Pitch — 6‑Week Pilot Plan</h2></div>
+        <p>Goal: stand up a <strong>real‑time decision support slice</strong> for the grid with measurable accuracy and latency targets. Ship something useful fast, then iterate.</p>
+        <h3>Scope (Phase 0 → Pilot)</h3>
+        <ul class="list">
+          <li><strong>P0 Data Contracts</strong>: ingest (hourly/sub‑hourly) load + weather (NOAA/ERA5), asset topology, outages; Parquet on S3; minimal schema + quality checks.</li>
+          <li><strong>Forecast v1 (Transformers)</strong>: baseline XGBoost + Temporal Fusion Transformer head‑to‑head; metrics: MAPE, nRMSE; horizon: day‑ahead + intraday.</li>
+          <li><strong>Weather Downscaling (Diffusion)</strong>: coarse→site downscaling for temp/wind; compare against simple bias‑corrected baselines.</li>
+          <li><strong>State Estimation (GNN)</strong>: small feeder graph; message passing over SCADA/AMI slices; evaluate MAE vs. power‑flow truth.</li>
+          <li><strong>MARL Sketch</strong>: offline simulation with safety‑clipped actions; track stability & constraint violations; <em>don’t deploy control yet</em>—just surface recs.</li>
+        </ul>
+        <div class="kpi">
+          <div class="metric"><div class="big">≤ 150 ms</div><div class="muted">p95 inference (forecast)</div></div>
+          <div class="metric"><div class="big">↓ 10–15%</div><div class="muted">MAPE vs. baseline</div></div>
+          <div class="metric"><div class="big">0 Sev‑1</div><div class="muted">safety violations (pilot)</div></div>
+        </div>
+        <h3>Deliverables</h3>
+        <ul class="list">
+          <li>Reproducible pipeline (Docker), eval notebook, model card, and <span class="tag">/predict</span> endpoint.</li>
+          <li>Simple control‑room dashboard: forecast, uncertainty bands, suggested actions (+ rationale).</li>
+          <li>Retro: data issues, error analysis, next‑up roadmap (online learning, human‑in‑the‑loop).</li>
+        </ul>
+        <h3>Risks & Mitigations</h3>
+        <ul class="list">
+          <li><strong>Data Gaps</strong> → backfilling + imputation policies; train/test leakage checks.</li>
+          <li><strong>Model Drift</strong> → drift monitors on features & residuals; weekly retrain rule.</li>
+          <li><strong>Ops</strong> → load‑shedding & circuit breakers; circuit‑breaker fallbacks to baseline.</li>
+        </ul>
+      </section>
+
+      <aside class="span-4 card">
+        <div class="section-title"><span class="dot"></span><h2>Summary</h2></div>
+        <p>Data scientist (3+ yrs). I turn messy ops data into reliable models & tools—end‑to‑end. Comfortable with Python, PyTorch, SQL, Spark; MLOps‑minded and deadline‑driven.</p>
+        <div>
+          <span class="pill">Forecasting</span>
+          <span class="pill">Anomaly Detection</span>
+          <span class="pill">Transformers</span>
+          <span class="pill">GNN</span>
+          <span class="pill">Docker</span>
+          <span class="pill">Spark</span>
+          <span class="pill">CI/CD</span>
+        </div>
+      </aside>
+    </div>
+
+    <div class="grid">
+      <section class="span-8 card">
+        <div class="section-title"><span class="dot"></span><h2>Application Q&A — Pravāh (Wellfound)</h2></div>
+        <div class="qna">
+          <div>
+            <div class="q">Why do you want to work with us?</div>
+            <p>You’re building real‑time decisioning for national grids with a stack I love: transformer forecasting, diffusion downscaling, GNN state estimation, and multi‑agent RL. I’m strong at turning ambiguous research into production systems fast—data contracts, eval harnesses, inference paths—and I want to help ship v1s that run in‑loop, not just in notebooks.</p>
+          </div>
+          <div>
+            <div class="q">Most impressive accomplishment</div>
+            <p>Led a mixed human–AI multiplayer system with live agentic decisions. Built a resilient Flask + Socket.IO backend (Python 3.12) with strict phase/eligibility guards, idempotent state updates, and hardened async flows. Debugged live sync under load across devices. It maps well to latency‑sensitive, failure‑aware grid decisioning.</p>
+          </div>
+          <div>
+            <div class="q">Projects aligned with Pravāh</div>
+            <ul class="list">
+              <li><strong>Agentic Multi‑Player Decisions</strong> — coordination & evaluation loops akin to MARL control surfaces.</li>
+              <li><strong>Transformer Vision/Segmentation</strong> — strong transformer fundamentals and inference ergonomics.</li>
+              <li><strong>NLP/MLOps & Ranking</strong> — metrics, ablations, and data contracts that translate to forecasting + GNN eval.</li>
+            </ul></div>
+          <div>
+            <div class="q">Top 1% at…</div>
+            <p><strong>Idea → running system fast.</strong> I carve minimal viable interfaces, ship robust E2E paths (data→model→eval→serve), and aggressively de‑risk timeouts, race conditions, and partial writes—so it works under stress.</p>
+          </div>
+        </div>
+      </section>
+
+      <aside class="span-4 card">
+        <div class="section-title"><span class="dot"></span><h2>Contact & Links</h2></div>
+        <p><strong>Email:</strong> <a href="mailto:apurvachavan125@gmail.com">apurvachavan125@gmail.com</a><br>
+        <strong>Phone:</strong> <a href="tel:+12034104412">(203) 410‑4412</a><br>
+        <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/apurvachavan125/" target="_blank">/in/apurvachavan125</a><br>
+        <strong>GitHub:</strong> <a href="https://github.com/Apurva1205" target="_blank">Apurva1205</a></p>
+        <h3>Core Skills</h3>
+        <p>Python, PyTorch, scikit‑learn, SQL, Spark, Docker, Airflow, Pandas, NumPy, Time‑Series, Transformers, GNN, MLOps.</p>
+      </aside>
+    </div>
+
+    <section class="card" style="margin-top: 18px;">
+      <div class="section-title"><span class="dot"></span><h2>Experience</h2></div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-title">Data Scientist Intern — Mental Model Algorithms, Ideatrix Cogn AI Lab Corp <span class="muted">(Remote, Jul 2025–Present)</span></div>
+          <ul class="list">
+            <li>Reasoning algorithms for multi‑agent dialogue (deception, inference, trust & alignment) with LLMs + cognitive models.</li>
+            <li>Hardened async flows; belief dynamics analysis; Werewolf Mental Model Arena experiments & write‑ups.</li>
+          </ul>
+        </div>
+        <div class="tl-item">
+          <div class="tl-title">Research Assistant — Data Science, University of New Haven <span class="muted">(Jan 2024–May 2025)</span></div>
+          <ul class="list">
+            <li>LLM data ops & fine‑tuning pipelines; code‑based annotation; secure deployment & feedback‑loop design.</li>
+          </ul>
+        </div>
+        <div class="tl-item">
+          <div class="tl-title">Machine Learning Engineer, TCS Research & Innovation <span class="muted">(Jun 2021–Aug 2023)</span></div>
+          <ul class="list">
+            <li>Deployed PyTorch forecasting models; containerized runtimes; model tracking; AWS serving; ↓25% compute cost.</li>
+          </ul>
+        </div>
+        <div class="tl-item">
+          <div class="tl-title">Software Developer — Data Engineering, L&T <span class="muted">(Jan 2019–May 2021)</span></div>
+          <ul class="list">
+            <li>Production APIs & automated Unix data workflows; optimized queries for enterprise reporting.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid">
+      <section class="span-8 card">
+        <div class="section-title"><span class="dot"></span><h2>Projects</h2></div>
+        <h3>LLM‑Powered Financial AI Agent <span class="muted">(Jan 2025–Ongoing)</span></h3>
+        <ul class="list">
+          <li>Fine‑tuned & deployed LLMs (incl. GPT‑4) into networked environments; QA & secure handling.</li>
+        </ul>
+        <h3>AI Resume Enhancer <span class="muted">(Jan–May 2025)</span></h3>
+        <ul class="list">
+          <li>Sentence‑transformers for parsing; predictive scoring for missing skills; real‑time APIs.</li>
+        </ul>
+        <h3>English–Belarusian Neural Translation Model <span class="muted">(Aug–Dec 2024)</span></h3>
+        <ul class="list">
+          <li>Low‑resource NMT (BERT‑GPT2); BLEU optimization; bilingual preprocessing.</li>
+        </ul>
+        <h3>Time‑Series Forecasting for Energy Consumption <span class="muted">(Aug–Dec 2023)</span></h3>
+        <ul class="list">
+          <li>ARIMA & LSTM pipelines; anomaly detection & alerts for infrastructure monitoring.</li>
+        </ul>
+      </section>
+
+      <aside class="span-4 card">
+        <div class="section-title"><span class="dot"></span><h2>Education</h2></div>
+        <p><strong>M.S., Data Science</strong> — University of New Haven (Aug 2023–May 2025)<br>
+          Courses: Deep Learning, AI Systems, Big Data, Data Viz, Statistical Methods</p>
+        <p><strong>B.E., Information Technology</strong> — University of Mumbai (Sept 2016–Jun 2021)<br>
+          Courses: Data Structures, DBMS, OS, ML</p>
+        <h3>Publication</h3>
+        <p>SMART MIRROR 2.0 — JETIR (Oct 2021) — <em>Touch‑free reflective interaction</em>.</p>
+      </aside>
+    </div>
+
+    <section class="card" style="margin-top: 18px;">
+      <div class="section-title"><span class="dot"></span><h2>How I Work</h2></div>
+      <ul class="list">
+        <li><strong>E2E ownership</strong> from data contracts → features → model → eval → serve.</li>
+        <li><strong>MLOps</strong>: experiment tracking, CI/CD, data quality & drift monitors, model cards.</li>
+        <li><strong>Communication</strong>: crisp docs, dashboards, and demos for technical & non‑technical partners.</li>
+      </ul>
+    </section>
+
+    <div class="footer">© Apurva Ravikar Chavan — This one‑pager answers Pravāh’s application prompts and proposes a pilot path you can actually ship.</div>
+  </div>
+</body>
+</html>
